@@ -142,9 +142,7 @@ class PointerMapper {
   /**
   *	empty the pointer list
   */
-  void clear(){
-    __pointer_list.clear();
-  }
+  void clear() { __pointer_list.clear(); }
 
   /* generate_id
    * Generates a unique id for a buffer.
@@ -180,14 +178,15 @@ class PointerMapper {
   /* get_buffer.
    * Returns a buffer from the map using the buffer id
    */
-   buffer_t get_buffer(buffer_id bId) const {
-     //  buffer_t retVal = __pointer_list.at(bId);
-     auto it = __pointer_list.find(bId);
-     if (it != __pointer_list.end())
-       return it->second;
-     std::cerr << "No sycl buffer found. Make sure that you have allocated memory for your buffer by calling malloc function."<< std::endl;
-     abort();
-   }
+  buffer_t get_buffer(buffer_id bId) const {
+    //  buffer_t retVal = __pointer_list.at(bId);
+    auto it = __pointer_list.find(bId);
+    if (it != __pointer_list.end()) return it->second;
+    std::cerr << "No sycl buffer has been found. Make sure that you have "
+                 "allocated memory for your buffer by calling malloc function."
+              << std::endl;
+    abort();
+  }
 
   /* remove_pointer.
    * Removes the given pointer from the map.
@@ -251,9 +250,7 @@ void free(void *ptr) { getPointerMapper().remove_pointer(ptr); }
 /**
  *clear the pointer list
  */
-void clear() {
-  getPointerMapper().clear();
-}
+void clear() { getPointerMapper().clear(); }
 
 }  // legacy
 }  // codeplay
