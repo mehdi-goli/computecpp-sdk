@@ -2,7 +2,7 @@
 
 A `*.cu` file is a combination of Host CUDA API and device CUDA kernel.
 
-This SYCL patterhn is able to re-use an existing CUDA kernel from a `*.cu` file into a C++ kernel, following these steps:
+This SYCL pattern is able to re-use an existing CUDA kernel from a `*.cu` file into a C++ kernel, following these steps:
 
 1. For the device kernel, we will introduce a SYCL functor that will encapsulate 
 all the CUDA code, enabling direct re-use of CUDA kernels without major 
@@ -27,7 +27,7 @@ __global__ void vecAdd(double *a, double *b, double *c, int n) {
   }
 }
 ```
-should be rewritten as: 
+should be re-written as: 
 
 ```cpp
 // Generated class:: Kernel dispatch.
@@ -130,8 +130,8 @@ At this time the nd_item is provided and each thead can construct their threadId
 
 * Not all input CUDA code can be automatically converted into SYCL code, since there is not always a one-to-one mapping between the two, or the mapping is not obvious. In particular, CUDA kernels heavily optimized for a specific CUDA architecture would need to be re-written manually to achieve comparable performance on the target architecture, even if they can be converted directly.
 
-* Local memory access in CUDA must be used through using a utility class.
-for example: 
+* Local memory access in CUDA must be used via a utility class.
+For example: 
 
 ```cpp
 // Utility class used to avoid linker errors with extern
@@ -179,7 +179,7 @@ struct SharedMemory<double>
 * build:
 
 ```
- COMPUTECPP_DIR=/path/to/computecpp/ make
+ ComputeCPP_DIR=/path/to/computecpp/ make
  ```
 
  * execute
